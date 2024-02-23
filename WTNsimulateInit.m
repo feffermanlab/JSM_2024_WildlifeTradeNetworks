@@ -1,6 +1,6 @@
 %This script seeds the immutable parameters for a simulation
 
-rng("default")
+rng("shuffle")
 
 %Number of Breeders
 NB=10;
@@ -76,3 +76,4 @@ for i = 1:1:NO
     ARO(:,i)=ARO(:,i)/sum(ARO(:,i));
 end
 
+ABD
