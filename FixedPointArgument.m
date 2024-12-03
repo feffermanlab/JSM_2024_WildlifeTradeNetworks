@@ -39,6 +39,16 @@ H =@(p)T3(p,Bminor,Dminor,eps)-p;
 [p,fval]=fsolve(G,[0.5;0.5;0.5])
 [p,fval]=fsolve(H,[0.5;0.5;0.5])
 
+p = zeros(4,1);
+p(1)=1;
+for i = 2:4
+    s = B(i,:)*p;
+    p(i)=s/(1-D(i,i)+s);
+end
+
+p
+
+
 function pplus = T(p,B,D,eps)
     pplus =B*p+D*p-(B*p+eps).*p+eps;
 end
@@ -53,3 +63,6 @@ end
 function pplus = T3(p,B,D,eps)
     pplus = (B*p+eps).*(1-p)+D*p;
 end
+
+
+
