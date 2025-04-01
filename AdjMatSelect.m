@@ -1,6 +1,12 @@
 function [W, N, r]= AdjMatSelect(optW, optr,l)
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+%ADJMATSELECT Auxilary function to select the adjacency matrix
+%   optW: the adjacency matrix W identified by an integer 1-6
+%   optR: the vector of intrinsic benefites identified by an integer 1-3
+%   l: constant multiplier for intrinsic weight default to 1
+
+%An auxilary function which keeps all the example adjacency matrices
+%easily accessible
+
 if optW == 1
     W = [0,0,0,0,0,0,0,0;
             0,0,0,0,0,0,0,0;
@@ -91,13 +97,17 @@ else
 
 end
 N = length(W(1,:));
+mult = 1;
+if nargin == 3
+    mult = l;
+end
 if optr == 1
-    r = l*[1,1,2,2,4,4,4,4];
+    r = mult*[1,1,2,2,4,4,4,4];
 elseif optr==2
-    r = l*[1,1,1,1,1,1,1,1];
+    r = mult*[1,1,1,1,1,1,1,1];
 elseif optr==3
-    r = l*[1,1,2,2,2,4,4,4,4,4,4,4,4,4,4];
+    r = mult*[1,1,2,2,2,4,4,4,4,4,4,4,4,4,4];
 else
-    r = l*[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
+    r = mult*[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
 end
 end

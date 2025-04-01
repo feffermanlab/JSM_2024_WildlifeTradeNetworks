@@ -1,4 +1,4 @@
-%This script takes a populations seeded by WTNSimulateinit
+%This script takes a populations seeded by WTNSimulateInit
 %and computes the payoff assuming a long run infections state. 
 
 WTNsimulateInit;

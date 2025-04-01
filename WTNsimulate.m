@@ -22,8 +22,9 @@ piB = zeros(NB,1,'double');
 piD = zeros(ND,1,'double');
 piR = zeros(NR,1,'double');
 piO = zeros(NO,1,'double');
- 
 
+
+%repeat this simulation for many rounds
 for t = 1:T
     %Transactions
     WBD = ABD.*(1-lD*(IB.')).';
@@ -71,11 +72,14 @@ for t = 1:T
         
 end
 
+%Report the payoffs for each class of player
 piB
 piD
 piR
 piO
 
+%report the infection status at the end of the game for each class of
+%player
 IB
 ID
 IR

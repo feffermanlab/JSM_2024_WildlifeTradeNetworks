@@ -58,22 +58,25 @@ IR = zeros(NR,1);
 IO = zeros(NO,1);
 
 %Seed Adjacency matrix 
+%iknteraction between breeders and distributors
 ABD = zeros(NB,ND);
 for i = 1:1:ND
     ABD(:,i)= rand(NB,1,"double");
     ABD(:,i)=ABD(:,i)/sum(ABD(:,i));
 end
 
+%interaction between distributors and retailors
 ADR = zeros(ND,NR);
 for i = 1:1:NR
     ADR(:,i)= rand(ND,1,"double");
     ADR(:,i)=ADR(:,i)/sum(ADR(:,i));
 end
 
+%interaction between retailors and owners
 ARO = zeros(NR,NO);
 for i = 1:1:NO
     ARO(:,i)= rand(NR,1,"double");
     ARO(:,i)=ARO(:,i)/sum(ARO(:,i));
 end
 
-ABD
+
