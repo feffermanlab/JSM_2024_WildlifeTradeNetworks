@@ -2,6 +2,10 @@
 ## Added
 *.png
 *.asv
+*.fig
+*.png
+*.tif
+*.pdf
 
 ## Core latex/pdflatex auxiliary files:
 *.aux

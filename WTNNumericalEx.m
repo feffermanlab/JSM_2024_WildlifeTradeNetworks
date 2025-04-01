@@ -77,66 +77,73 @@ res = 1000;
 % weights5=weights(W5,xbar5,N5)
 % weights5'*pbar5 
 
-
+lw=1.5;
 %robust network
-% figure()
-% [W1,N1,r1]=AdjMatSelect(1,2,1);
-% [sol, band]=parameterscan(T,el,res,W1,N1,100,0,1.5,80,r1,[5,6,7,8]);
-% plot(sol(:,1),sol(:,7),sol(:,1),sol(:,3),sol(:,1),sol(:,4),sol(:,1),sol(:,6))
-% title('Parameter Cascades in Symmetric Network')
-% ylim([0,0.55])
-% xlabel('Intrinsic Benefit Weight')
-% ylabel('Equilibrium Strategy')
-% legend('Consumer 1','Producer','Distributor','Consumer 2')
+figure()
+[W1,N1,r1]=AdjMatSelect(1,2,1);
+[sol, band]=parameterscan(T,el,res,W1,N1,100,0,1.5,80,r1,[5,6,7,8]);
+h=plot(sol(:,1),sol(:,7),"-",sol(:,1),sol(:,3),"--",sol(:,1),sol(:,4),":");
+set(h(3),'Color',"#0000a4","LineWidth",lw)
+set(h(2),'Color','#bc272d',"LineWidth",lw)
+set(h(1),'Color','#e9c716',"LineWidth",lw)
+title('Parameter Cascades in Symmetric Network')
+ylim([0,0.55])
+xlabel('Intrinsic Benefit Weight')
+ylabel('Equilibrium Strategy')
+legend('Consumer','Producer','Distributor','location','southeast')
 
 
 %fragile network
-% figure(r1)
-% [W1,N1,r1]=AdjMatSelect(2,2,1);
-% [sol, band]=parameterscan(T,el,res,W1,N1,100,0,1.5,80,r1,[5,6,7,8]);
-% plot(sol(:,1),sol(:,7),sol(:,1),sol(:,3),sol(:,1),sol(:,4),sol(:,1),sol(:,6))
-% title('Parameter Cascades in Asymmetric Network')
-% ylim([0,0.55])
-% xlabel('Intrinsic Benefit Weight')
-% ylabel('Equilibrium Strategy')
-% legend('Consumer 1','Producer','Distributor','Consumer 2')
+figure()
+[W1,N1,r1]=AdjMatSelect(2,2,1);
+[sol, band]=parameterscan(T,el,res,W1,N1,100,0,1.5,80,r1,[5,6,7,8]);
+h=plot(sol(:,1),sol(:,7),"-", sol(:,1),sol(:,3),"--",sol(:,1),sol(:,4),":",sol(:,1),sol(:,5),"-.");
+set(h(3),'Color',"#0000a4","LineWidth",lw)
+set(h(2),'Color','#bc272d',"LineWidth",lw)
+set(h(1),'Color','#e9c716',"LineWidth",lw)
+set(h(4),'Color','#50ad9f',"LineWidth",lw)
+title('Parameter Cascades in Asymmetric Network')
+ylim([0,0.55])
+xlabel('Intrinsic Benefit Weight')
+ylabel('Equilibrium Strategy')
+legend('Consumer','Producer','Distributor (a1)','Distributor (a2)', 'location','southeast')
 
 %defector logic
-[W1,N1, r1]=AdjMatSelect(1,1,2);
-[xbar1,xdev1,xres1,pbar1,pdev1]=simulate(T,el,res,W1,N1,r1,10);
-[xbar2,xdev2,xres2,pbar2,pdev2]=defector(T,el,res,W1,N1,r1,10,2,0);
-[xbar3,xdev3,xres3,pbar3,pdev3]=defector(T,el,res,W1,N1,r1,10,2,1);
-disp("symmetric")
-xbar1
-xdev1
-pbar1
-pdev1
-disp('Naive risk')
-1-prod(1-pbar1)
-disp('weighted risk')
-weights1=weights(W1,xbar1,N1)
-weights1'*pbar1 
-disp("Consumer defects to 0")
-xbar2
-xdev2
-pbar2
-pdev2
-disp('Naive risk')
-1-prod(1-pbar2)
-disp('weighted risk')
-weights2=weights(W1,xbar2,N1)
-weights2'*pbar2 
-
-disp("Consumer defects to 1")
-xbar3
-xdev3
-pbar3
-pdev3
-disp('Naive risk')
-1-prod(1-pbar3)
-disp('weighted risk')
-weights3=weights(W1,xbar3,N1)
-weights3'*pbar3 
+% [W1,N1, r1]=AdjMatSelect(1,1,2);
+% [xbar1,xdev1,xres1,pbar1,pdev1]=simulate(T,el,res,W1,N1,r1,10);
+% [xbar2,xdev2,xres2,pbar2,pdev2]=defector(T,el,res,W1,N1,r1,10,2,0);
+% [xbar3,xdev3,xres3,pbar3,pdev3]=defector(T,el,res,W1,N1,r1,10,2,1);
+% disp("symmetric")
+% xbar1
+% xdev1
+% pbar1
+% pdev1
+% disp('Naive risk')
+% 1-prod(1-pbar1)
+% disp('weighted risk')
+% weights1=weights(W1,xbar1,N1)
+% weights1'*pbar1 
+% disp("Consumer defects to 0")
+% xbar2
+% xdev2
+% pbar2
+% pdev2
+% disp('Naive risk')
+% 1-prod(1-pbar2)
+% disp('weighted risk')
+% weights2=weights(W1,xbar2,N1)
+% weights2'*pbar2 
+% 
+% disp("Consumer defects to 1")
+% xbar3
+% xdev3
+% pbar3
+% pdev3
+% disp('Naive risk')
+% 1-prod(1-pbar3)
+% disp('weighted risk')
+% weights3=weights(W1,xbar3,N1)
+% weights3'*pbar3 
 
 
 function [curve, band] = parameterscan(T,el,res, W,N,reps, minr, maxr, rres, rdefault, rfoci)
