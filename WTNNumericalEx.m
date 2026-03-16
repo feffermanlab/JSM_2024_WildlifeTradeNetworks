@@ -101,6 +101,10 @@ weights5'*pbar5
 lw=1.5;
 %symmetric network
 figure()
+t=tiledlayout(2,1);
+t.TileSpacing = "compact";
+t.Padding = "compact";
+nexttile
 %select symmetric adjacency matrix and simulate on a strip in the parameter
 %space
 [W1,N1,r1]=AdjMatSelect(1,2,1);
@@ -118,7 +122,7 @@ legend('Consumer','Producer','Distributor','location','southeast')
 
 
 %asymmetric network network
-figure()
+nexttile
 %select asymmetric adjacency matrix and simulate on a strip in the
 %parameter space
 [W1,N1,r1]=AdjMatSelect(2,2,1);
